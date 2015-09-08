@@ -1,0 +1,39 @@
+.nav-placeholder{
+    position: relative;
+    min-height: 50px;
+	margin-bottom: 20px;
+}
+
+.footer{
+    margin-top:10px;
+    bottom:0px;
+    height:200px;
+    background-color:#eee;
+    width:100%;
+    left:0
+}
+
+.muted{
+    color:#999999;
+    margin:20px
+}
+
+.social-media {
+    margin:10px
+}
+
+.fieldWrapper {
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+
+}
+
+.c-wrapper{
+    margin:10 0 10 0;
+    border:1px solid rgb(221, 221, 221);
+    border-left-color: #1b809e;
+    border-left-width: 10px;
+    padding-left:5%;
+    border-radius: 3px;
+}

@@ -1,14 +1,27 @@
-<html>
-    <head>
-        <title>Welcome my Django blog</title>
-    </head>
-    <body>
-        {% for post in posts %}
-            <div>
-                <p>published: {{ post.publish_date }}</p>
-                <h1><a href="">{{ post.title }}</a></h1>
-                <p>{{ post.text|linebreaks }}</p>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <table class="table table-striped">
+      <h3 class = "text-muted">Recent Posts Exhibition</h3>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for post in posts %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></td>
+          <td>{{ post.text|linebreaks }}</td>
+          <td>{{ post.publish_date }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+{% endblock content %}
+
+

@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>Python Installation</h1>
+            <div class="alert alert-success ">
+                Downloads (Windows): <a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows</a></br>
+                Downloads (Mac OS X):<a href="https://www.python.org/downloads/mac-osx/"> https://www.python.org/downloads/mac-osx/</a>
+            </div>
+        <div class="container-float">
+            <h2>System Environment Setting</h2>
+            <p>One thing to watch out for: on the second screen of the installation wizard, marked "Customize", make sure you scroll down and choose the "Add python.exe to the Path" option, as shown here:</p>
+            <img src="{% static 'img/pythonEnv.png' %}" class="img-thumbnail" height="40%" width="40%">
+            <h2>OS X</h2>
+            <p>Verify the installation was successful by opening the Terminal application and running the python3 command:</p>
+            <code>$ python3 --version<br/>Python 3.4.3</code>
+            <h2>Set up Virtual environment</h2>
+            <h5>Linux and OS X</h5>
+            <div>
+                <ol>
+                  <li>Create a virtual environment (also called a virtualenv)</li>
+                     <code>~/SitePractise$ python3 -m venv myvenv</code>
+                  <li>Start your virtual environment by running</li>
+                    <code>~/SitePractise$ source myvenv/bin/activate</code>
+                  <li>You will know that you have virtualenv started when you see that the prompt in your console looks like</li>
+                    <code>(myvenv) ~/SitePractise$</code>
+               </ol>
+            </div>
+        </div>
+    </div>
+{% endblock %}
