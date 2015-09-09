@@ -143,6 +143,3 @@ $(window).scroll(function(){
   });
 });
 
-
-
-
