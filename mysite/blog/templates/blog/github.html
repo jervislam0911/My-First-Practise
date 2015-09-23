@@ -1,0 +1,82 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+        <h1>Git Installation</h1>
+            <div class="alert alert-info ">
+                <h5>MacOS</h5>
+                Download Git from  <a href="https://git-scm.com">https://git-scm.com</a> and just follow the instructions.<br>
+            </div>
+        < class="container-float">
+            <h2>Starting Git repository</h2>
+             <code>$ git init</code><br>
+             <code> Initialized empty Git repository in ~/SitePractise/.git/</code><br>
+             <code> $ git config --global user.name "Your Name"</code><br>
+             <code> $ git config --global user.email you@example.com</code><br>
+            <i class="text-success">SitePractise is the folder where your site located</i><br>
+            <br>
+            <p>Initializing the git repository is something we only need to do once per project (and you won't have to re-enter the username and email again ever).
+               Git will track changes to all the files and folders in this directory, but there are some files we want it to ignore. We do this by creating a file called .gitignore in the base directory. Open up your editor and create a new file with the following contents:
+            </p>
+            <code> *.pyc</code><br>
+            <code> __pycache__ </code><br>
+            <code> myvenv </code><br>
+            <code> db.sqlite3 </code><br>
+            <code> .DS_Store </code><br>
+            <p>And save it as .gitignore in the top-level "SitePractise" folder</p>
+            <br>
+            <p>It's a good idea to use a git status command before git add or whenever you find yourself unsure of what has changed. This will help stop any surprises from happening, such as wrong files being added or commited. The git status command returns information about any untracked/modifed/staged files, branch status, and much more. The output should be similar to:</p>
+            <code>$ git status</code><br>
+            <code>On branch master</code><br>
+            <code>Initial commit</code><br>
+            <code>Untracked files:   (use "git add < file >..." to include in what will be committed)</code><br>
+            <code>.gitignore</code><br>
+            <code>blog/</code><br>
+            <code>manage.py</code><br>
+            <code>mysite/</code><br>
+            <code>nothing added to commit but untracked files present (use "git add" to track) </code><br>
+            <br>
+            <p>And finally we save our changes. Go to your console and run these commands:</p>
+            <code>$ git add -A . $ git commit -m "My Django Site app, first commit"  [...]  13 files changed, 200 insertions(+)  create mode 100644 .gitignore  [...]  create mode 100644 mysite/wsgi.py</code><br>
+            <i class="text-success">Locate your site folder</i><br>
+            <h1>Pushing code to GitHub</h1>
+            <div class="alert alert-info ">
+                Go to  <a href="http://github.com">GitHub.com</a> and sign up for a new, free user account. (If you already did that in the workshop prep, that is great!)</br>
+                <p>Then, create a new repository, giving it the name "my-first-blog". Leave the "initialise with a README" tickbox un-checked, leave the .gitignore option blank (we've done that manually) and leave the License as None.</p>
+            </div>
+             <p>On the next screen, you'll be shown your repo's clone URL. Choose the "HTTPS" version, copy it, and we'll paste it into the terminal shortly:</p>
+            <p>
+                Now we need to hook up the Git repository on your computer to the one up on GitHub.
+                Type the following into your console (Replace < your-github-username >with the username you entered when you created your GitHub account, but without the angle-brackets):
+            </p>
+            <code>$ git remote add origin https://github.com/< your-github-username >/my-first-blog.git</code><br>
+            <code>$ git push -u origin master</code><br>
+            <br>
+            <p>Enter your GitHub username and password and you should see something like this:</p>
+            <code>Username for 'https://github.com': hjwp </code><br>
+            <code>Password for 'https://hjwp@github.com': </code><br>
+            <code>Counting objects: 6, done. </code><br>
+            <code>Writing objects: 100% (6/6), 200 bytes | 0 bytes/s, done.</code><br>
+            <code>Total 3 (delta 0), reused 0 (delta 0)</code><br>
+            <code>To https://github.com/hjwp/my-first-blog.git  * [new branch]      master -> master</code><br>
+            <code>Branch master set up to track remote branch master from origin.</code><br>
+            <br>
+            <p>Your code is now on GitHub. Go and check it out! :)</p>
+            <h3 class="text-center">Git Workflow</h3><br>
+            <img src="{% static 'img/github3.png' %}" class="img-responsive">
+            <br>
+            <div>
+                <ol>
+                     <li>Change recently commit message</li>
+                     <code>git commit --amend -m "New commit message"</code><br>
+                     <code>git push < remote > < branch > -f</code>
+                </ol>
+            </div>
+            <br>
+           <p> <strong>Warning: force-pushing will overwrite the remote branch with the state of your local one.</strong> If there are commits on the remote branch that you don't have in your local branch, you will lose those commits.</p>
+           <p> <strong>Warning: be cautious about amending commits that you have already shared with other people.</strong> Amending commits essentially rewrites them to have different SHA IDs, which poses a problem if other people have copies of the old commit that you've rewritten. Anyone who has a copy of the old commit will need to re-synchronize their work with your newly re-written commit, which can sometimes be difficult, so make sure you coordinate with others when attempting to rewrite shared commit history, or just avoid rewriting shared commits altogether.
+           </p>
+
+        </div>
+    </div>
+{% endblock %}

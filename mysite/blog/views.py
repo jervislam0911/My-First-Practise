@@ -15,6 +15,15 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
+def post_group(request, post_type):
+    posts_type = post_p.objects.filter(type=post_type).order_by('publish_date')
+    return render(request, 'blog/post_list.html', {'posts': posts_type})
+    # django_posts = post_p.objects.filter(type='Django').order_by('publish_date')
+    # github_posts = post_p.objects.filter(type='GitHub').order_by('publish_date')
+    # posts = post_p.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')
+    # return render(request, 'blog/post_list.html', {'posts': posts})
+
+
 def post_detail(request, pk):
     post_info = get_object_or_404(post_p, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post_info})
@@ -52,6 +61,11 @@ def post_edit(request, pk):
 def python(request):
     return render(request, 'blog/python.html')
 
+def django(request):
+    return render(request, 'blog/django.html')
+
+def github(request):
+    return render(request, 'blog/github.html')
 
 def signup_view(request):
     if request.method == "POST":

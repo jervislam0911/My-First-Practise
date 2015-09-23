@@ -34,8 +34,8 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="{% url "post_list" %}">Home</a></li>
             <li><a href="{% url "python" %}" class="top-menu">Python</a></li>
-            <li><a href="#">Django</a></li>
-            <li><a href="#">Git & GitHub</a></li>
+            <li><a href="{% url "django" %}">Django</a></li>
+            <li><a href="{% url "github" %}">Git & GitHub</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'thumbnail_list' %}">Daily life</a></li>
             {% endif %}

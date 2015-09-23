@@ -4,10 +4,21 @@
 
     <table class="table table-striped">
       <h3 class = "text-muted">Recent Posts Exhibition</h3>
+      <div class="pull-right">
+      <h5>Group By: <span class="glyphicon glyphicon-sort-by-attributes"></span></h5>
+        <a href="{% url "post_group" post_type='Django' %}" class="label label-default">Django</a>
+        <a href="{% url "post_group" post_type='Python' %}" class="label label-primary">Python</a>
+        <a href="{% url "post_group" post_type='Javascript' %}" class="label label-success">Javascript</a>
+        <a href="{% url "post_group" post_type='GitHub' %}" class="label label-info">GitHub</a>
+      </div>
+
+
+
+
       <thead>
         <tr>
-          <th>#</th>
           <th>Title</th>
+          <th>Type</th>
           <th>Content</th>
           <th>Date</th>
         </tr>
@@ -15,8 +26,8 @@
       <tbody>
       {% for post in posts %}
         <tr>
-          <th scope="row">{{forloop.counter}}</th>
-          <td><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></td>
+          <td list-group-item-success><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></td>
+          <td>{{post.type}}</td>
           <td>{{ post.text|linebreaks }}</td>
           <td>{{ post.publish_date }}</td>
         </tr>
