@@ -1,7 +1,6 @@
 .nav-placeholder{
     position: relative;
     min-height: 50px;
-	margin-bottom: 20px;
 }
 
 .footer{
@@ -41,3 +40,14 @@
 .bs-example .btn {
     margin:10px
 }
+
+.jumbotron {
+background-image: url("../img/index_pic.jpg");
+background-size: 100% 100%;
+background-repeat:no-repeat;
+}
+
+h1 {
+    text-shadow: 4px 1px 1px rgba(150, 150, 150, 1);
+}
+

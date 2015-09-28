@@ -3,6 +3,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(r'^$', views.main_page, name='main_page'),
     url(r'^post/$', views.post_list, name='post_list'),
     url(r'^post_group/(?P<post_type>.*)/$', views.post_group, name='post_group'),
     # url(r'^(?P<pt>)/$', views.post_list, name='python_posts'),

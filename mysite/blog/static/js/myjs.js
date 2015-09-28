@@ -31,36 +31,15 @@ var rotation = function (){
 		
 $(document).ready(function() {
 	
-	$("#header_logo_dragon").css("display","none");
-	rotation();
-	$("#presentation").mouseover(function(){
-		console.log(this.id);
-	
-	});
-	
+$("#js-rotating").Morphext({
+    animation: "bounceIn", // Overrides default "bounceIn"
+    separator: ",", // Overrides default ","
+    speed: 3000, // Overrides default 2000
+    complete: function () {
+        // Overrides default empty function
+    }
+});
 
-
-			// var menu = $('.menu');
-			// var origOffsetY = menu.offset().top;
-			// menu.wrap('<div class ="nav-placeholder"></div>');
-			// $(".nav-placeholder").height(menu.outerHeight());
-			
-			// menu.wrapInner('<div class ="nav-inner"></div>');
-			// var stickmenu = menu.outerWidth();
-			
-			// function scroll() {
-				// if ($(window).scrollTop() >= origOffsetY) {
-				// menu.addClass('sticky');
-				// $(".nav-inner").width(stickmenu);
-				// menu.addClass('nav');
-			// } else {
-				// menu.removeClass('sticky');
-				// menu.removeClass('nav');
-			// }
-
-		// }
-
-			// document.onscroll = scroll;	
 
 });
 		
