@@ -32,7 +32,7 @@ var rotation = function (){
 $(document).ready(function() {
 	
 $("#js-rotating").Morphext({
-    animation: "bounceIn", // Overrides default "bounceIn"
+    animation:"zoomInLeft", // Overrides default "bounceIn"
     separator: ",", // Overrides default ","
     speed: 3000, // Overrides default 2000
     complete: function () {

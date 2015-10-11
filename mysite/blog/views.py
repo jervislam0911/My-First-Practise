@@ -14,14 +14,13 @@ def main_page(request):
     return render(request, 'blog/index.html')
 
 
-@login_required
+@login_required(login_url='/login/')
 # Create your views here.
 def post_list(request):
-
     posts = post_p.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
-@login_required
+@login_required(login_url='/login/')
 def post_group(request, post_type):
     posts_type = post_p.objects.filter(type=post_type).order_by('publish_date')
     return render(request, 'blog/post_list.html', {'posts': posts_type})
@@ -30,12 +29,12 @@ def post_group(request, post_type):
     # posts = post_p.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')
     # return render(request, 'blog/post_list.html', {'posts': posts})
 
-@login_required
+@login_required(login_url='/login/')
 def post_detail(request, pk):
     post_info = get_object_or_404(post_p, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post_info})
 
-@login_required
+@login_required(login_url='/login/')
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -49,7 +48,7 @@ def post_new(request):
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
-@login_required
+@login_required(login_url='/login/')
 def post_edit(request, pk):
     post = get_object_or_404(post_p, pk=pk)
     if request.method == "POST":
@@ -64,13 +63,13 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
-@login_required
+@login_required(login_url='/login/')
 def python(request):
     return render(request, 'blog/python.html')
-@login_required
+@login_required(login_url='/login/')
 def django(request):
     return render(request, 'blog/django.html')
-@login_required
+@login_required(login_url='/login/')
 def github(request):
     return render(request, 'blog/github.html')
 
@@ -104,13 +103,13 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('blog.views.post_list')
+    return redirect('blog.views.main_page')
 
-@login_required
+@login_required(login_url='/login/')
 def daily_life(request):
     return render(request, 'blog/daily_life.html')
 
-@login_required
+@login_required(login_url='/login/')
 def thumbnail_list(request):
     pic_list = []
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

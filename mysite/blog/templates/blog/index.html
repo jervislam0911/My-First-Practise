@@ -2,42 +2,126 @@
 {% load staticfiles %}
 {% block content %}
 <div class="row">
-<div class="col-md-4">
-    <div class="row">
-        <img src="{% static 'img/icon_1.jpg' %}" class="img-responsive" style="height:300px;width:300px">
+    <div class="container">
+        <h4 class="text-center"><small> More flexible, convenient, and scalable</small></h4>
+        <div class="text-center main_title">Python + Django + Bootstrap </div>
+
     </div>
-    <div class="row">
-    <h4 class="col-md-4 col-md-offset-3">Knowledge</h4>
-    </div>
-    <br>
-    <p class="row">To share, To learn, To gain from those who have grateful, creative, and amazing thoughts.It's about the time to boost yourself into another level.</p>
+</div>
+<br>
+<div class="row">
+     <div class="container">
+          <div class="col-md-6">
+            <img class = "img-responsive" src="{% static 'img/index_code.jpg' %}" alt="...">
+          </div>
+
+          <div class="col-md-6">
+                <h3>Python <small>light weight programing language</small> </h3>
+                <p>Run your code by just "one-click" button without any compiling, speeding up your computing allows you to provide high-performance
+                    on tasking ranging from systems automation, testing, and ETL to gaming, CGI and web development.
+                    It has been widely used by many scientists, programmers, as well as engineers.It empowers your skills for your professional field.
+                </p>
+
+                <h3>Django <small>powerful web-app framework</small> </h3>
+                <p>Hunger for developing your first web app? Django here for you. Django is a Python framework, which makes many things much easier.
+                It has fully featured out of the box. These toolkit of components provide all web applications needs. In addition, there are lots of
+                packages you can use to extend you website, which help you to build better apps more quickly and less time spending, also reassuringly secure. </p>
+
+                <!--<h4>Bootstrap <small>popular HTML, CSS, and JS framework</small> </h4>-->
+                <!--<p>By using Bootstrap, now you have no worry on developing responsive, mobile friendly web project</p>-->
+           </div>
+
+     </div>
 </div>
 
-<div class="col-md-4">
-    <div class="row">
-        <img src="{% static 'img/icon_2.jpg' %}" class="img-responsive" style="height:300px;width:300px">
-    </div>
 
-    <div class="row">
-    <h4 class="col-md-4 col-md-offset-3">Technology</h4>
-    </div>
-    <br>
-    <p class="row">Improve your technical from basic to enhancement by following the high-tech trend out there. Finding anything you need from here for your to
-        keep you pace. We tech, We awesome.</>
+
+<br>
+<br>
+
+
+<div class="row">
+     <div class="container">
+         <div class="col-md-6" style="padding-top:5em">
+
+            <h3>Bootstrap <small>popular HTML, CSS, and JS framework</small> </h3>
+             <p>Bootstrap provides you the short cut for developing responsive, mobile friendly web app. It easily scales your web application with CSS media
+                 queries. More over, it works on different kinds of tablets and it fully supports varied cell phone platforms such as iOS, Android, Windows Phone, BlackBerry,
+                 etc.With Bootstrap, you can apply dozens of HTML and CSS components as well as javascript plugin to your project to make it for all size and all shapes.
+             </p>
+         </div>
+
+         <div class="col-md-6">
+            <img class = "img-responsive" src="{% static 'img/index_phones.jpg' %}" alt="...">
+         </div>
+
+
+     </div>
 </div>
 
-<div class="col-md-4">
-    <div class="row">
-        <img src="{% static 'img/icon_3.jpg' %}" class="img-responsive" style="height:300px;width:300px">
+
+
+
+
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+
+     <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+            <img src="{% static 'img/icon_1.jpg' %}" alt="...">
+        </a>
+
+        <div class="caption">
+            <h3 class="text-center">Information</h3>
+            <p class="text-justify">To share, to learn, to gain up to date knowledge from those ones who have creative thoughts. It's about the time to boost yourself into another level and develop new skills.</p>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+            <img src="{% static 'img/icon_2.jpg' %}" alt="...">
+        </a>
+
+        <div class="caption">
+            <h3 class="text-center">Technology</h3>
+            <p class="text-justify">Improve your technical skills from basic to enhancement by following the high-tech trend out there. Finding anything you need from here for yourself to keep you pace in this fast changing world.</p>
+        </div>
     </div>
 
-    <div class="row">
-    <h4 class="col-md-4 col-md-offset-3">Connectivity</h4>
+    <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+            <img src="{% static 'img/icon_3.jpg' %}" alt="...">
+        </a>
+
+        <div class="caption">
+            <h3 class="text-center">Research</h3>
+            <p class="text-justify">Search the web for all you needs and relevant information for free. You can systematically investigate and study the materials and sources here in order to establish new facts.</p>
+        </div>
     </div>
-    <br>
-    <p class="row">We are engagement to interact with social media. Connection here is not only for communication, but is more for expand your social network and knowledge growth. </p>
+
+    <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+            <img src="{% static 'img/icon_4.jpg' %}" alt="...">
+        </a>
+
+        <div class="caption">
+            <h3 class="text-center">Connectivity</h3>
+            <p class="text-justify">We highly engage to interact with social network. Connection here is not only for communication. It is more for expanding the connectivity with other people and knowledge growth.</p>
+        </div>
+    </div>
 
 </div>
-</div>
+
+
 
 {% endblock %}
