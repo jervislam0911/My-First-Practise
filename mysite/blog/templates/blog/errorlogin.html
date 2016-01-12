@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  The username and password were incorrect. Please re-enter again.
+</div>
+
+
+<div class="alert alert-info" role="alert">
+    If you don't have an account yet, please sign up by clicking the sign up button on top of the page.
+  <p>After 10 seconds, it will redirect back to login page. If it doesn't response for too long please click the link below:</p>
+  <p><a href="{{ refresh_url }}">Back to Login</a></p>
+  <meta http-equiv="refresh" content="10;url={{ refresh_url }}">
+
+</div>
+{% endblock %}

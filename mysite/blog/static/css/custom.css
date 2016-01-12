@@ -47,6 +47,14 @@ and (max-device-width : 568px){
     left:0
 }
 
+.c-wrapper{
+    margin:10 0 10 0;
+    border:1px solid rgb(221, 221, 221);
+    border-left-color: #1b809e;
+    border-left-width: 10px;
+    padding-left:5%;
+    border-radius: 3px;
+}
 
 .jumbotron {
 position:relative;

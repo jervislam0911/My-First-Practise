@@ -6,12 +6,36 @@ from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 from django.http import Http404
+from django.shortcuts import HttpResponse
 import os
 
 
 def main_page(request):
-    return render(request, 'blog/index.html')
+    visits = request.session.get('visits')
+    if not visits:
+        visits = 0
+    # print('before', visits)
+    reset_last_visit_time = False
+    last_visit = request.session.get('last_visit')
+
+    if last_visit:
+        last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
+        if (datetime.now() - last_visit_time).seconds > 0:
+            visits += 1
+            reset_last_visit_time = True
+    else:
+        reset_last_visit_time = True
+
+    request.session['visits'] = visits
+    # request.session.save()
+
+    if reset_last_visit_time:
+        request.session['last_visit'] = str(datetime.now())
+    response = render(request, 'blog/index.html')
+    print('Total visit: ', visits)
+    return response
 
 
 @login_required(login_url='/login/')
@@ -63,6 +87,13 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+
+
+
+
+
+
+
 @login_required(login_url='/login/')
 def python(request):
     return render(request, 'blog/python.html')
@@ -72,6 +103,16 @@ def django(request):
 @login_required(login_url='/login/')
 def github(request):
     return render(request, 'blog/github.html')
+
+
+
+
+
+
+
+
+
+
 
 def signup_view(request):
     if request.method == "POST":
@@ -85,25 +126,43 @@ def signup_view(request):
 
 
 def login_view(request):
+    #     username = request.POST.get('un')
+    #     password = request.POST.get('ps')
+    #     m = post_p.objects.get(username=request.POST['us'])
+    #     if m.password == request.POST['ps']:
+    #         request.session['member_id'] = m.id
+    #         return HttpResponse("You're logged in.")
+    #     else:
+    #         return HttpResponse("Your username and password didn't match.")
     if request.method == "POST":
         username = request.POST.get('un')
         password = request.POST.get('ps')
         user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('blog.views.post_list')
-            else:
-                raise Http404("not active")
-        else:
-            raise Http404("please sign up")
+
+        if user is not None and user.is_active:
+
+            # print(request.session.session_key)
+            login(request, user)
+            # print(request.session.session_key)
+            return redirect('blog.views.post_list')
+        elif not request.user.is_authenticated():
+            return render(request, 'blog/errorlogin.html')
     else:
         return render(request, 'blog/login.html')
 
 
 def logout_view(request):
+    # print(request.session.session_key)
     logout(request)
     return redirect('blog.views.main_page')
+
+
+
+
+
+
+
+
 
 @login_required(login_url='/login/')
 def daily_life(request):
