@@ -1,15 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import post as post_p
-from .forms import PostForm
+from .models import Post as post_p, Comment as comment_s
+from .forms import PostForm, CommentForm
+from django.forms import formset_factory
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from django.http import Http404
 from django.shortcuts import HttpResponse
 import os
+
+###############################################
+# Main page request along with visits session #
+###############################################
 
 
 def main_page(request):
@@ -35,7 +39,13 @@ def main_page(request):
         request.session['last_visit'] = str(datetime.now())
     response = render(request, 'blog/index.html')
     print('Total visit: ', visits)
+    # return HttpResponse(visits)
     return response
+
+
+###############################################
+# Post list, groups, and detail section       #
+###############################################
 
 
 @login_required(login_url='/login/')
@@ -44,19 +54,19 @@ def post_list(request):
     posts = post_p.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
+
 @login_required(login_url='/login/')
 def post_group(request, post_type):
     posts_type = post_p.objects.filter(type=post_type).order_by('publish_date')
     return render(request, 'blog/post_list.html', {'posts': posts_type})
-    # django_posts = post_p.objects.filter(type='Django').order_by('publish_date')
-    # github_posts = post_p.objects.filter(type='GitHub').order_by('publish_date')
-    # posts = post_p.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')
-    # return render(request, 'blog/post_list.html', {'posts': posts})
+
 
 @login_required(login_url='/login/')
 def post_detail(request, pk):
     post_info = get_object_or_404(post_p, pk=pk)
+    # print(post_info.text)
     return render(request, 'blog/post_detail.html', {'post': post_info})
+
 
 @login_required(login_url='/login/')
 def post_new(request):
@@ -72,15 +82,18 @@ def post_new(request):
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
+
 @login_required(login_url='/login/')
 def post_edit(request, pk):
     post = get_object_or_404(post_p, pk=pk)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.publish_date = timezone.now()
+
+            # post.picture = request.FILES['picture']
             post.save()
             return redirect('blog.views.post_detail', pk=post.pk)
     else:
@@ -88,57 +101,76 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
+@login_required(login_url='/login/')
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(post_p, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('blog.views.post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
 
+@login_required(login_url='/login/')
+def comment_approve(request, pk):
+    comment = get_object_or_404(comment_s, pk=pk)
+    comment.approve()
+    return redirect('blog.views.post_detail', pk=comment.post.pk)
+
+@login_required(login_url='/login/')
+def comment_remove(request, pk):
+    comment = get_object_or_404(comment_s, pk=pk)
+    post_pk = comment.post.pk
+    comment.delete()
+    return redirect('blog.views.post_detail', pk=post_pk)
 
 
-
+#################################################
+# Documentation(Python, Django, GitHub) section #
+#################################################
 
 @login_required(login_url='/login/')
 def python(request):
     return render(request, 'blog/python.html')
+
+
 @login_required(login_url='/login/')
 def django(request):
     return render(request, 'blog/django.html')
+
+
 @login_required(login_url='/login/')
 def github(request):
     return render(request, 'blog/github.html')
 
 
-
-
-
-
-
-
-
-
+###############################################
+# User section (Registration, Login, Logout)  #
+###############################################
 
 def signup_view(request):
     if request.method == "POST":
         signup_form = UserCreationForm(request.POST)
         if signup_form.is_valid():
-            new_user = signup_form.save()
-            return redirect('blog.views.login_view')
+            signup_form.save()
+            new_user = authenticate(username=request.POST['username'], password=request.POST['password1'])
+            login(request, new_user)
+            return redirect('blog.views.post_list')
     else:
         signup_form = UserCreationForm()
     return render(request, 'blog/signup.html', {'signup_form': signup_form})
 
 
 def login_view(request):
-    #     username = request.POST.get('un')
-    #     password = request.POST.get('ps')
-    #     m = post_p.objects.get(username=request.POST['us'])
-    #     if m.password == request.POST['ps']:
-    #         request.session['member_id'] = m.id
-    #         return HttpResponse("You're logged in.")
-    #     else:
-    #         return HttpResponse("Your username and password didn't match.")
     if request.method == "POST":
         username = request.POST.get('un')
         password = request.POST.get('ps')
         user = authenticate(username=username, password=password)
-
         if user is not None and user.is_active:
 
             # print(request.session.session_key)
@@ -152,21 +184,18 @@ def login_view(request):
 
 
 def logout_view(request):
-    # print(request.session.session_key)
     logout(request)
     return redirect('blog.views.main_page')
 
-
-
-
-
-
-
+###############################################
+# Picture and Image section                   #
+###############################################
 
 
 @login_required(login_url='/login/')
 def daily_life(request):
     return render(request, 'blog/daily_life.html')
+
 
 @login_required(login_url='/login/')
 def thumbnail_list(request):
@@ -177,3 +206,10 @@ def thumbnail_list(request):
     for fn in img_dir[1:]:
         pic_list.append(fn)
     return render(request, 'blog/daily_life.html', {'pic_list': pic_list})
+
+
+
+
+
+
+

@@ -22,14 +22,12 @@
       </div>
 
 
-
-
       <thead>
         <tr>
           <th>Title</th>
           <th>Type</th>
-
           <th>Date</th>
+          <th>Comments</th>
         </tr>
       </thead>
       <tbody>
@@ -38,6 +36,8 @@
           <td list-group-item-success><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></td>
           <td>{{post.type}}</td>
           <td>{{ post.publish_date }}</td>
+          <td><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.approved_comments.count}}</a></td>
+
         </tr>
       {% endfor %}
       </tbody>

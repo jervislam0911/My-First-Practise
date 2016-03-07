@@ -4,6 +4,7 @@ html, body {
   overflow-x: hidden !important;
 }
 
+/* place holder for nav bar */
 
 .nav-placeholder{
     position: relative;
@@ -32,9 +33,28 @@ and (max-device-width : 568px){
     }
 }
 
+
+/* font configuration */
+
 .main_title {
-    font-size: 3em;
+    font-family: Andale Mono, monospace;
+    font-size: 30px;
+    font-weight: bold;
     margin: 0 0 0.5em 0
+}
+
+/* font configuration for leading words and sub title */
+
+div > h3 {
+    font-family: Andale Mono, monospace;
+}
+
+/* font configuration for text */
+
+div > p {
+    font-family: Palatino, serif;
+    text-align: justify;
+    font-size: 15px ;
 }
 
 .footer{
@@ -44,7 +64,8 @@ and (max-device-width : 568px){
     height:auto;
     background-color:#eee;
     width:100%;
-    left:0
+    left:0;
+    font-family: Andale Mono, monospace;
 }
 
 .c-wrapper{
@@ -55,6 +76,11 @@ and (max-device-width : 568px){
     padding-left:5%;
     border-radius: 3px;
 }
+
+pre {
+    margin: 4em 4em 4em 0;
+}
+
 
 .jumbotron {
 position:relative;
@@ -96,3 +122,9 @@ and (max-device-width : 568px){
     }
 }
 }
+
+
+.comment {
+    margin: 20px 0px 20px 20px;
+}
+

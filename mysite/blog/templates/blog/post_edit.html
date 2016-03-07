@@ -3,7 +3,7 @@
 {% block content %}
 <div class="fieldWrapper">
     <h2 class="text-primary">New Topic Post</h2>
-        <form method="POST" class="post-form">{% csrf_token %}
+        <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
             <!--{{ form.as_p }}-->
 
             <div>
@@ -16,7 +16,16 @@
 
 
             <div>
-                {{ form.text.label_tag}} {{form.text|add_class:"form-control" }}
+                {{ form.text.label_tag}} {{form.text|add_class:"form-control"}}
+            </div>
+
+
+            <div>
+                {{ form.code.label_tag}} {{form.code|add_class:"form-control"}}
+            </div>
+
+            <div>
+                {{form.picture}}
             </div>
 
             <br>
