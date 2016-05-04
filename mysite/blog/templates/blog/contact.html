@@ -1,0 +1,72 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class="banner" data-attr="" data-attr-second="">
+</div>
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-12" style="padding-left:5em;">
+            <h1>Send Me a Letter Today</h1>
+            <h5>If you have any question please feel free to send me an Email</h5>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+    {% if errors %}
+        <ul>
+          {% for error in errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+    {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" method="POST">{% csrf_token %}
+              <div class="form-group">
+                <label class="control-label col-md-3" for="inputGroupSuccess3">Subject</label>
+                <div class="input-group col-md-8">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
+                  <input type="text" class="form-control" id="inputGroupSuccess3" name="subject" aria-describedby="inputGroupSuccess3Status">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3" for="inputGroupSuccess3">Your Name</label>
+                <div class="input-group col-md-8">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                  <input type="text" class="form-control" id="inputGroupSuccess3" name="name" aria-describedby="inputGroupSuccess3Status">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3" for="inputGroupSuccess3">Email (optional)</label>
+                <div class="input-group col-md-8">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                  <input type="text" class="form-control" id="inputGroupSuccess3" name="email" aria-describedby="inputGroupSuccess3Status">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3" for="inputGroupSuccess3">Message</label>
+                <div class="input-group col-md-8">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span></span>
+                   <textarea class="form-control" rows="7" id="comment" name="message"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="save btn btn-primary col-md-2 col-md-offset-6">Send</button>
+              </div>
+        </form>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'img/contact.jpg' %} " class="img-responsive" alt="Cinque Terre">
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

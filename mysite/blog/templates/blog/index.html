@@ -2,110 +2,164 @@
 {% load staticfiles %}
 {% block content %}
 <!--row for main title-->
-<div class="row">
-    <div class="container">
-        <div class="text-center main_title">Python + Django + Bootstrap </div>
-        <h4 class="text-center" style="font-family:monospace"><small> More flexible, convenient, and scalable</small></h4>
+<!--jumbotron image and text-->
+<div class="jumbotron"></div>
+
+<div class = "bannerTitle">
+    <h1 class ="text-center" >Tech Blog</h1><hr class="m-y-3">
+    <h5 class="text-center">A guy comes from planet of tech nerd left his note here</h5>
+    <h5 class="text-center">It notes down a load of secrets about Python, Django, and JQuery</h5>
+    <a href="#" class="btn-know-more" style="text-decoration: none;">Know More</a>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="container main_title">
+            <div class="col-md-4 text-center ">Python</div>
+            <div class="col-md-4 text-center colorAnimation">Django</div>
+            <div class="col-md-4 text-center">jQuery</div>
+            <hr class="profile_section">
+            <h3 class="text-center sub_title"><small>More flexible, convenient, and scalable</small></h3>
+        </div>
     </div>
+
+    <div class="row profile">
+        <div class="container">
+            <div class="img-profile"></div>
+            <!--<img src="{% static 'img/psu.jpg' %}" alt="profile" class="img-circle img-responsive">-->
+
+            <div class="profile_text">
+                <h1>Jervis<span> Lin </span></h1>
+                <h6>Is this his selfie? No one knows. However...</h6>
+                <h6>According to the rumors, he likes plodding through a day.</h6>
+                <h6>Keep working on his secretes. And now! You will find them here.</h6>
+            </div>
+            <div class="text-center">
+                <a href="https://www.facebook.com/jervis.lin.1"><i class="fa fa-facebook fa-2x"></i></a>
+                <a href="#"><i class="fa fa-github fa-2x"></i></a>
+                <a href="https://www.linkedin.com/pub/weijie-lin/a8/27b/61b"><i class="fa fa-linkedin fa-2x"></i></a>
+            </div>
+        </div>
+    </div>
+    <hr class="python_section">
+    <br>
+    <!--row for python and django title-->
+
+    <div class="container">
+        <div class="row python_pic">
+             <div class="col-md-5">
+                 <h3 style="color:#219CDE;">Python <small>light weight programing language</small></h3>
+                 <p> Run your code by just "one-click" button without any compiling, speeding up your computing allows you to provide high-performance
+                     on tasking ranging from systems automation, testing, and ETL to gaming, CGI and Web Development.
+                     It has been widely used by many scientists, programmers, as well as engineers. It empowers your skills for your professional field.
+                 </p>
+             </div>
+              <div class="col-md-7">
+                 <div class = "magnify">
+                     <div class ="large"></div>
+                    <img class = "small img-responsive img-rounded index_code" src="{% static 'img/index_code.jpg' %}" alt="Code Sample">
+                 </div>
+              </div>
+         </div>
+
+    </div>
+
+    <hr class="django_section">
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="position:relative; left:0;top:0;">
+                            <img class = "img-responsive laptop" src="{% static 'img/laptop.png' %}">
+                            <img class = "img-responsive iphone" src="{% static 'img/IPhone.png' %}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 django_pic">
+                    <h3 style="color:#2e6a3c">Django <small>powerful web-app framework</small> </h3>
+                    <p>Hunger for developing your first web app? Django here for you. Django is a Python framework, which makes many things much easier.
+                    It has fully featured out of the box. These toolkit of components provide all web applications needs. In addition, there are lots of
+                    packages you can use to extend you website, which help you to build better apps more quickly and less time spending, also reassuringly secure.
+                    With <span style="color:#590785;font-weight: bold;">Bootstrap</span>, you can apply dozens of HTML and CSS components as well as javascript plugin to your project to make it for all size and all shapes.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="jQuery_section">
+    <br>
+
+    <!--row for bootstrap title-->
+    <div class="container">
+         <div class="row">
+             <div class="col-md-6 jQuery_pic">
+
+                <h3>jQuery <small>lightweight footprint, CSS3 compliant, and cross-browser library</small> </h3>
+                 <p>jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+                     With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript and improved user experiences.
+                 </p>
+             </div>
+
+             <div class="col-md-6 siteTraffic">
+                <h4 class="text-center text-primary">Site Traffic <div id="myfirstchart" style="height: 250px;"></div></h4>
+             </div>
+         </div>
+    </div>
+    <br>
+    <!--row for others-->
+    <div class="row">
+         <div class="col-sm-6 col-md-3 index_pic_info">
+                <a class="thumbnail">
+                    <img src="{% static 'img/icon1.jpg' %}" alt="...">
+                </a>
+             <div class="caption text-center">
+                <h3>Information</h3>
+                <p class="text-center">To share, to learn, to gain up to date knowledge from those ones who have creative thoughts. It's about the time to boost yourself into another level and develop new skills.</p>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-3 index_pic_tech">
+                <a class="thumbnail">
+                    <img src="{% static 'img/icon2.jpg' %}" alt="...">
+                </a>
+             <div class="caption text-center">
+                 <h3 class="text-center">Technology</h3>
+                 <p class="text-center">Improve your technical skills from basic to enhancement by following the high-tech trend out there. Finding anything you need from here for yourself to keep you pace in this fast changing world.</p>
+             </div>
+         </div>
+
+         <div class="col-sm-6 col-md-3 index_pic_rese">
+                <a class="thumbnail">
+                    <img src="{% static 'img/icon3.jpg' %}" alt="...">
+                </a>
+             <div class="caption text-center">
+                <h3 class="text-center">Research</h3>
+                <p class="text-center">Search the web for all you needs and relevant information for free. You can systematically investigate and study the materials and sources here in order to establish new facts.</p>
+             </div>
+         </div>
+
+         <div class="col-sm-6 col-md-3 index_pic_conn">
+                 <a class="thumbnail">
+                     <img src="{% static 'img/icon4.png' %}" alt="...">
+                 </a>
+
+             <div class="caption text-center">
+                 <h3 class="text-center">Connectivity</h3>
+                 <p class="text-center">We highly engage to interact with social network. Connection here is not only for communication. It is more for expanding the connectivity with other people and knowledge growth.</p>
+             </div>
+         </div>
+
+    </div>
+
+    <div class="row">
+      <br>
+      <br>
+      <div class="col-md-2 col-md-offset-11">
+          <a href="#"><span class="glyphicon glyphicon-share-alt"></span>Back to top</a>
+      </div>
+    </div>
+    <hr class="footer_section">
+    <br>
 </div>
-<br>
-<!--row for python and django title-->
-<div class="row">
-     <div class="container">
-          <div class="col-md-6">
-            <img class = "img-responsive" src="{% static 'img/index_code.jpg' %}" alt="Code Sample" style="padding:2em">
-          </div>
-
-          <div class="col-md-6">
-                <h3>Python <small>light weight programing language</small> </h3>
-                <p>Run your code by just "one-click" button without any compiling, speeding up your computing allows you to provide high-performance
-                    on tasking ranging from systems automation, testing, and ETL to gaming, CGI and web development.
-                    It has been widely used by many scientists, programmers, as well as engineers.It empowers your skills for your professional field.
-                </p>
-
-                <h3>Django <small>powerful web-app framework</small> </h3>
-                <p>Hunger for developing your first web app? Django here for you. Django is a Python framework, which makes many things much easier.
-                It has fully featured out of the box. These toolkit of components provide all web applications needs. In addition, there are lots of
-                packages you can use to extend you website, which help you to build better apps more quickly and less time spending, also reassuringly secure. </p>
-
-                <!--<h4>Bootstrap <small>popular HTML, CSS, and JS framework</small> </h4>-->
-                <!--<p>By using Bootstrap, now you have no worry on developing responsive, mobile friendly web project</p>-->
-           </div>
-
-     </div>
-</div>
-<!--row for bootstrap title-->
-<div class="row">
-     <div class="container">
-         <div class="col-md-6">
-
-            <h3>Bootstrap <small>popular HTML, CSS, and JS framework</small> </h3>
-             <p>Bootstrap is a very powerful framework for HTML, CSS and JS in which provides you the short cut for developing responsive, mobile friendly web app.
-                 It easily scales your web application with CSS media queries. No matter how you shrink your web pages, it will keep your display and show what it's
-                 supposed to exhibit. More over, it works on different kinds of tablets and it fully supports varied cell phone platforms such as iOS, Android, Windows
-                 Phone, BlackBerry,etc.With Bootstrap, you can apply dozens of HTML and CSS components as well as javascript plugin to your project to make it for all size and all shapes.
-             </p>
-         </div>
-
-         <div class="col-md-6">
-            <img class = "img-responsive" src="{% static 'img/index_phones.jpg' %}" alt="..." style="padding:2em">
-         </div>
-
-
-     </div>
-</div>
-<br>
-<!--row for others-->
-<div class="row">
-
-     <div class="col-sm-6 col-md-3">
-         <div class="index_pic">
-            <a href="#" class="thumbnail">
-                <img src="{% static 'img/icon_1.jpg' %}" alt="...">
-            </a>
-         </div>
-         <div class="caption">
-            <h3 class="text-center">Information</h3>
-            <p class="text-justify">To share, to learn, to gain up to date knowledge from those ones who have creative thoughts. It's about the time to boost yourself into another level and develop new skills.</p>
-         </div>
-     </div>
-     <div class="col-sm-6 col-md-3">
-         <div class="index_pic">
-            <a href="#" class="thumbnail">
-                <img src="{% static 'img/icon_2.jpg' %}" alt="...">
-            </a>
-         </div>
-         <div class="caption">
-             <h3 class="text-center">Technology</h3>
-             <p>Improve your technical skills from basic to enhancement by following the high-tech trend out there. Finding anything you need from here for yourself to keep you pace in this fast changing world.</p>
-         </div>
-     </div>
-
-     <div class="col-sm-6 col-md-3">
-         <div class="index_pic">
-            <a href="#" class="thumbnail">
-                <img src="{% static 'img/icon_3.jpg' %}" alt="...">
-            </a>
-         </div>
-         <div class="caption">
-            <h3 class="text-center">Research</h3>
-            <p>Search the web for all you needs and relevant information for free. You can systematically investigate and study the materials and sources here in order to establish new facts.</p>
-         </div>
-     </div>
-
-     <div class="col-sm-6 col-md-3">
-         <div class="index_pic">
-             <a href="#" class="thumbnail">
-                 <img src="{% static 'img/icon_4.jpg' %}" alt="...">
-             </a>
-         </div>
-
-         <div class="caption">
-             <h3 class="text-center">Connectivity</h3>
-             <p>We highly engage to interact with social network. Connection here is not only for communication. It is more for expanding the connectivity with other people and knowledge growth.</p>
-         </div>
-     </div>
-
-</div>
-
 {% endblock %}

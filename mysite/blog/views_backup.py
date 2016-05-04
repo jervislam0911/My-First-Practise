@@ -1,14 +1,13 @@
-from django.shortcuts import render, get_object_or_404,redirect, HttpResponse
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from django.core.mail import send_mail, BadHeaderError
-from .models import Post as post_p, Comment as comment_s, PostSection as post_s
-from .forms import PostForm, CommentForm, RequiredFormSet
+from .models import Post as post_p, Comment as comment_s
+from .forms import PostForm, CommentForm
+from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from django.conf import settings
-from django.forms import modelformset_factory
+from django.shortcuts import HttpResponse
 import os
 
 ###############################################
@@ -77,26 +76,6 @@ def post_new(request):
 
 
 @login_required(login_url='/login/')
-def post_section(request, pk):
-    post = get_object_or_404(post_p, pk=pk)
-    post_section_formset = modelformset_factory(post_s, fields=('text', 'code'), formset=RequiredFormSet)
-    if request.method == "POST":
-        formset = post_section_formset(request.POST, request.FILES)
-        if formset.is_valid():
-            for i in range(0, formset.total_form_count()):
-                form = formset.forms[i]
-                form.empty_permitted = False
-                post_sections = form.save(commit=False)
-                post_sections.post = post
-                post_sections.save()
-            return redirect('blog.views.post_detail', pk=post_sections.post.pk)
-            # formset.save()
-    else:
-        formset = post_section_formset(queryset=post_s.objects.filter(post__id=post.pk))
-    return render(request, 'blog/post_edit.html', {'formset': formset})
-
-
-@login_required(login_url='/login/')
 def post_detail(request, pk):
     post_info = get_object_or_404(post_p, pk=pk)
     # print(post_info.text)
@@ -112,15 +91,13 @@ def post_edit(request, pk):
             post = form.save(commit=False)
             post.author = request.user
             post.publish_date = timezone.now()
+
             # post.picture = request.FILES['picture']
             post.save()
             return redirect('blog.views.post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
-
-
-
 
 
 @login_required(login_url='/login/')
@@ -216,21 +193,8 @@ def logout_view(request):
 
 
 @login_required(login_url='/login/')
-def contact(request):
-    if request.method == "POST":
-        subject = request.POST.get("subject")
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
-        if subject and name and message:
-            try:
-                send_mail(subject, message, "%s from %s <do_not_replay@domain.com>" %(name, email), [settings.EMAIL_HOST_USER], fail_silently=False)
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return HttpResponse('Thank you for your message.')
-        else:
-            return HttpResponse('Please make sure fields are filled and valid.')
-    return render(request, 'blog/contact.html')
+def daily_life(request):
+    return render(request, 'blog/daily_life.html')
 
 
 

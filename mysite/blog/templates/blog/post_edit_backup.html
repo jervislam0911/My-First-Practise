@@ -6,7 +6,8 @@
 <div class="container">
     <h2 class="text-primary">New Topic Post</h2>
         <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
-            <!--{{form}}-->
+            <!--{{ form.as_p }}-->
+
             <div>
                 {{ form.title.label_tag}} {{form.title|add_class:"form-control" }}
             </div>
@@ -28,7 +29,7 @@
             <div>
                 {{form.picture}}
             </div>
-                {{formset}}
+
             <br>
 
             <button type="submit" class="save btn btn-default">Save</button>

@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 
-
 PRIORITY_CHOICES = (('Python', 'Python'),
                     ('Django', 'Django'),
                     ('GitHub', 'GitHub'))
@@ -14,6 +13,7 @@ class Post(models.Model):
     text = models.TextField()
     code = models.TextField(max_length=600, null=True, blank=True)
     create_date = models.DateTimeField(default=timezone.now)
+
     publish_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
@@ -25,12 +25,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class PostSection(models.Model):
-    post = models.ForeignKey('blog.Post', related_name='postsection')
-    text = models.TextField(max_length=200, null=False, blank=False)
-    code = models.TextField(max_length=200, null=True, blank=True)
 
 
 class Comment(models.Model):

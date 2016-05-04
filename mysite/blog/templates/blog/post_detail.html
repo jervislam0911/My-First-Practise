@@ -1,37 +1,49 @@
 {% extends "blog/base.html" %}
 {% load widget_tweaks %}
+{% load staticfiles %}
 {% block content %}
-
+<div class="banner" data-attr="" data-attr-second="">
+</div>
+<div class="container">
     <div class="post">
         <div class = "row">
             <div class = "col-md-2 col-md-offset-10">
-                <a class="btn btn-default" href="{% url "post_edit" pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
+                <a class="btn btn-primary btn-sm" type="button" href="{% url "post_section" pk=post.pk %}"><span class="glyphicon glyphicon-plus"></span> Add More</a>
+                <a class="btn btn-primary btn-sm" href="{% url "post_edit" pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
             </div>
         </div>
+        <div class="post_detail_wrapper">
+                <div class = "post_section_init">
+                    <div class = "row" >
+                        <div class = "col-md-6 ">
+                            <h3><div>{{ post.title }}</div></h3>
+                        </div>
+                        {% if post.publish_date %}
+                        <div class = "col-md-4 col-md-offset-2" style="padding-top:25px">
+                              This post published on <strong>{{ post.publish_date }}</strong>
+                        </div>
+                        {% endif %}
+                    </div>
 
-        <div class="c-wrapper">
-            <div class = "row" >
-                <div class = "col-md-6 ">
-                    <h3><i>{{ post.title }}</i></h3>
+                    <p class="text-warning">{{ post.text|linebreaksbr}}</p>
                 </div>
-                {% if post.publish_date %}
-                <div class = "col-md-4 col-md-offset-2" style="padding-top:25px">
-                      This post published on <strong>{{ post.publish_date }}</strong>
-                </div>
+
+                {% if post.code %}
+                <pre>
+                    <code class="hljs python">{{ post.code }}</code>
+                </pre>
                 {% endif %}
-            </div>
 
-            <p class="text-warning">{{ post.text|linebreaksbr}}</p>
+                {% for postsection in post.postsection.all %}
+                    <p class="text-warning">{{ postsection.text|linebreaksbr}}</p>
+                    {% if postsection.code %}
+                        <pre>
+                            <code class="hljs python">{{ postsection.code}}</code>
+                        </pre>
+                    {% endif %}
+                {% endfor %}
 
-            {% if post.code %}
-            <pre>
-                <code class="hljs python">{{ post.code }}</code>
-            </pre>
-            {% endif %}
-            
-            {% if post.picture.name != 'pic' %}
-                <img src="/{{post.picture.name}}" class="img-thumbnail" alt={{post.picture.name}}>
-            {% endif %}
+
         </div>
     </div>
 
@@ -55,4 +67,5 @@
     {% empty %}
         <p>No comments here yet :(</p>
     {% endfor %}
+</div>
 {% endblock %}

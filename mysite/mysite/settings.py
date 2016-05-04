@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Email setting over SMTP
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'djangolivesite@gmail.com'
+EMAIL_HOST_PASSWORD = 'jayjlk333'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Application definition
 

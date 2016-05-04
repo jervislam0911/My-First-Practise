@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^post/$', views.post_list, name='post_list'),
     url(r'^post_group/(?P<post_type>.*)/$', views.post_group, name='post_group'),
     url(r'^error/$', views.login_view, name='login_error'),
-    # url(r'^index$', views.post_list, name='post_list'),
+    url(r'^post/(?P<pk>[0-9]+)/post-section/$', views.post_section, name='post_section'),
     url(r'^post/(?P<pk>[0-9]+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     url(r'^comment/(?P<pk>[0-9]+)/approve/$', views.comment_approve, name='comment_approve'),
     url(r'^comment/(?P<pk>[0-9]+)/remove/$', views.comment_remove, name='comment_remove'),
@@ -28,6 +28,5 @@ urlpatterns = [
     url(r'^signup/$', views.signup_view, name='signup'),
     url(r'^login/$', views.login_view, name='login'),
     url(r'^logout/$', views.logout_view, name='logout'),
-    url(r'^daily_life/$', views.thumbnail_list, name='thumbnail_list'),
-
+    url(r'^contact/$', views.contact, name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
