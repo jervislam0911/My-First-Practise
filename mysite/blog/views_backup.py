@@ -91,8 +91,6 @@ def post_edit(request, pk):
             post = form.save(commit=False)
             post.author = request.user
             post.publish_date = timezone.now()
-
-            # post.picture = request.FILES['picture']
             post.save()
             return redirect('blog.views.post_detail', pk=post.pk)
     else:
