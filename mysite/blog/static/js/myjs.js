@@ -139,7 +139,12 @@ $(function(){
                     $(".banner").css("background-image","-webkit-linear-gradient(left,#781b3b,#921b33)");
                     $('.banner').attr('data-attr', 'Contact');
                     $('.banner').attr('data-attr-second', 'Here is place for keeping connection');
-
+                    break;
+                case "Log in":
+                    $(".banner").css("background-image","-webkit-linear-gradient(left,#494047,#0c0000)");
+                    $('.banner').attr('data-attr', 'LogIn');
+                    $('.banner').attr('data-attr-second', ' Explore more you would like to know');
+                    break;
              }
           }
 
