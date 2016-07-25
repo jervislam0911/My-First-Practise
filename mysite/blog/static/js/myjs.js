@@ -145,6 +145,11 @@ $(function(){
                     $('.banner').attr('data-attr', 'LogIn');
                     $('.banner').attr('data-attr-second', ' Explore more you would like to know');
                     break;
+                case "Sign up":
+                    $(".banner").css("background-image","-webkit-linear-gradient(left,#494047,#0c0000)");
+                    $('.banner').attr('data-attr', 'SignUp');
+                    $('.banner').attr('data-attr-second', ' Explore more you would like to know');
+                    break;
              }
           }
 

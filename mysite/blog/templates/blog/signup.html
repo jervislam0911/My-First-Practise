@@ -1,6 +1,11 @@
 {% extends "blog/base.html" %}
 {% load widget_tweaks %}
 {% block content %}
+<div class="banner" data-attr="" data-attr-second="">
+</div>
+<div class="container">
+  <h1>Sign Up an Account</h1>
+    <div class="page-header" ></div>
 <form class="form-horizontal" method="post">{% csrf_token %}
   <div class="form-group">
         <label class="col-sm-2 control-label">{{ signup_form.username.label_tag}}</label>
@@ -29,5 +34,5 @@
     </div>
   </div>
 </form>
-
+</div>
 {% endblock %}
